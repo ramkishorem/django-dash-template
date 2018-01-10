@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}
+        
+    {% endblock title %}</title>
+    <style>
+        * {
+            box-sizing:border-box;
+        }
+        html {
+            font-size: 16px;
+            font-family: "Times New Roman", serif;
+        }
+        body {
+            position: relative;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            margin-top:4px;
+            margin-bottom:2px;
+        }
+        ul {
+            padding-left:14px;
+        }
+        p, table {
+            margin-bottom:6px;
+            margin-top:3px;
+        }
+        th, td {
+            padding:1px 3px;
+        }
+        table {
+            width:100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        .table--definition th {
+            text-align: right;
+        }
+        .table--model-list th,.table--model-list td {
+            border:1px solid black;
+            margin:0;
+        }
+        .center {
+            text-align: center;
+        }
+        .right,.numerical {
+            text-align: right;
+        }
+        .italic {
+            font-style: italic;
+        }
+        @media print { 
+            .hide-for-print {
+                display: none !important;
+            }
+
+            .content-block, p {
+                page-break-inside: avoid;
+            }
+        }
+        .header {
+            border-bottom:1px dashed black;
+        }
+        .banner {
+            border-top:2px solid black;
+            border-bottom:2px solid black;
+            margin-bottom:18px;
+        }
+        .islet {
+            margin-bottom:18px;
+        }
+    </style>
+    {% block style %}
+        
+    {% endblock style %}
+</head>
+<body>
+    {% block content %}
+        
+    {% endblock content %}
+    <script>
+        window.onload = function() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

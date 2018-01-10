@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class='{% block page_name %}{% endblock page_name %}'>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{%block title%}Home{%endblock%} | {{ORG_NAME}}</title>
+    {% load compress %}
+
+    <link rel="shortcut icon" href="{{STATIC_URL}}images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{STATIC_URL}}images/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/style.min.css" type="text/css">
+</head>
+<body>
+    <div role='banner' class='banner-area'>
+        <div class="site-header">
+            <header class="dashboard-logo logo" role="banner">
+            <a href="{% url 'home' %}" accesskey="1" title="Home">{{ORG_NAME}}</a>
+        </header><!--
+            --><div class="site-nav-session">
+                {% include "session-box.html" %}
+            </div>
+            <div class="nav-wrap__container">
+                <div class="site-nav__container">
+                <nav role="navigation" class="site-nav">
+                    <ul class='site-nav__ul'>
+                        <li class="site-nav__li"><a class='site-nav__a' href="{{LOGIN_URL}}"><span class='site-nav__text'>Login</span></a></li></a></li>
+                    </ul>
+                </nav>
+                </div>
+            </div>
+        </div>
+        {% block banner_content %}
+            
+        {% endblock banner_content %}
+    </div>
+    <div class="site-wrap">
+
+    <div class="site-main" role="main">
+        {% if messages %}
+        <ul class="messages colored-content-box white-bg-color">
+            {% for message in messages %}
+            <li{% if message.tags %} class="message {{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    </div>
+    <footer class="site-footer" role="contentinfo">
+            <p class="content-info copyright">Copyright &copy; 2017 <br>{{ORG_NAME}}</p>
+    </footer>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    {% compress js %}
+    <script src="{{STATIC_URL}}js/responsive-nav.js"></script>
+    <script src="{{STATIC_URL}}js/page-tabs.js"></script>
+    {% endcompress %}
+    <script>
+        var nav = responsiveNav('.site-nav');
+    </script>
+    {% block scripts %}{% endblock scripts %}
+</body>
+</html>

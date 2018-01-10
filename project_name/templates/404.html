@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{%block title%}Page not found{%endblock%}
+{%block content%}
+<p class="error">Oops! The page you requested does not exist. <a href="{% url 'home' %}">Go to home page</a></p>
+{%endblock%}

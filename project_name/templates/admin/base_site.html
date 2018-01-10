@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ORG_NAME}} Administration{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ORG_NAME}} Administration</a></h1>
+{% endblock %}
+
+{% block nav-global %}
+    <a href="{% url 'home' %}">Site home</a> |
+    <a href="{% url 'dashboard:main' %}">Dashboard home</a> |
+    <a href="{% url 'admin:index' %}">Admin home</a> |
+{% endblock %}

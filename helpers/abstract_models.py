@@ -1,10 +1,8 @@
-from autoslug import AutoSlugField
-
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django.core.exceptions import ValidationError
-
+from django.utils.text import slugify
 
 class EntityAllFather(models.Model):
     name = models.CharField(_('Name'), max_length=255, unique=True)
@@ -22,11 +20,15 @@ class EntityAllFather(models.Model):
 
 
 class SlugifiedEntity(EntityAllFather):
-    slug = AutoSlugField(_('Slug'), populate_from='name',
-        unique = True)
+    slug = models.SlugField(_('Slug'), unique = True,
+        default='auto-populated')
 
     class Meta:
         abstract = True
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(SlugifiedEntity, self).save(*args, **kwargs)
 
 
 class SingletonModel(models.Model):
